@@ -1,0 +1,13 @@
+# C source files
+main.c
+
+# Executable files
+output.exe
+
+# Test files
+tests/
+
+# IDE specific files
+.idea/
+.vscode/
+*.iml
