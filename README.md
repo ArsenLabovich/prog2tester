@@ -35,7 +35,13 @@ stdout/
 ├── scenar_2/
 │   ├── (1st output for the second scenario)
 │   ...
-main.c
+include/
+├── data.h
+├── functions.h
+src/
+├── data.c
+├── functions.c
+├── main.c
 tester.py
 ```
 ---
@@ -44,7 +50,7 @@ To run tests you need to go to directory where
 the script,tests and C file are located and run the following command:
 
 ```bash
-python tester_reworked.py
+python tester.py
 ``` 
 
 ### **Show Difference Mode**
@@ -54,10 +60,10 @@ By default, the script will run tests in the usual mode (--show-diff = False).
 ---
  
 ```bash
-python tester_reworked.py -s 
+python tester.py -s 
 ``` 
 ```bash
-python tester_reworked.py --show-diff
+python tester.py --show-diff
 ``` 
 Tester will run tests and show the difference between the expected and actual output.
 
