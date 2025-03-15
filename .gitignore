@@ -4,6 +4,11 @@ main.c
 # Executable files
 output.exe
 
+# Includes files
+# Code files
+include/*
+src/*
+
 # Test files
 tests/
 
