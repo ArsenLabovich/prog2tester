@@ -17,7 +17,7 @@ In the working directory , there should be a package `/src` with  a compilable C
 and an unpacked folder with tests downloaded from the site `prog2.dev`.
 Or you can create your own tests with the same structure.
 
-### **Structure Example (only for 1st task, then will be updated)**
+### **Structure Example (only for 2nd task, then will be updated)**
 ```
 stdin/
 ├── scenar_1/
@@ -45,8 +45,7 @@ tester.py
 ```
 ---
 ### **How to use?**
-To run tests you need to go to directory where 
-the script,tests and C file are located and run the following command:
+To run tests you need to go to root directory `../tester_with_tests_2task` and run the following command:
 
 ```bash
 python tester.py
@@ -92,7 +91,9 @@ Example 3
 #### *Author - Arsen Labovich*
 
 #### *All rights reserved. Unauthorized copying or use of this document is prohibited.*
+
 #### *The author is not responsible for the accuracy of your answers.*
+
 ---
 
 
@@ -100,5 +101,5 @@ Example 3
 
 - **Telegram:** [@Laboviiich](https://t.me/Laboviiich)
 - **Email:** [arsen.labovich@gmail.com](mailto:arsen.labovich@gmail.com)
-- **Discord:** [medved9762] [medved9762]
-]
+- **Discord:** [Медьведь?](https://discord.gg/zjWsB8rM)
+
