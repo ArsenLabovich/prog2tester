@@ -10,6 +10,7 @@ RED = "\033[91m"
 GREEN = "\033[92m"
 RESET = "\033[0m"
 
+SRC_PACKAGE_NAME = 'src'
 DEFAULT_C_FILENAME = 'main.c'
 
 parser = argparse.ArgumentParser(description='Run tests for C program.')
@@ -65,7 +66,10 @@ def checkFilesAndFolders():
 
 
 def compile_c_file(c_file_path):
-    compile_command = ['gcc', c_file_path, '-o', 'output']
+    compile_command = [
+        'gcc', c_file_path, './src/data.c', './src/functions.c',
+        '-I', './include', '-o', 'output'
+    ]
     try:
         result = subprocess.run(compile_command, capture_output=True, text=True)
         if result.returncode != 0:
@@ -105,8 +109,10 @@ def run_c_program(c_input_data_path):
 
 
 def run_tests_in_folder(input_folder, expected_folder):
-    input_data_paths = sorted([os.path.join(input_folder, f) for f in os.listdir(input_folder) if f.startswith('example')])
-    expected_output_paths = sorted([os.path.join(expected_folder, f) for f in os.listdir(expected_folder) if f.startswith('example')])
+    input_data_paths = sorted(
+        [os.path.join(input_folder, f) for f in os.listdir(input_folder) if f.startswith('example')])
+    expected_output_paths = sorted(
+        [os.path.join(expected_folder, f) for f in os.listdir(expected_folder) if f.startswith('example')])
 
     counter = 1
     summary = []
@@ -143,7 +149,7 @@ def main():
     test_folders = [Path('stdin') / f'scenar_{i}' for i in range(1, len(os.listdir('stdin')) + 1)]
     expected_folders = [Path('stdout') / f'scenar_{i}' for i in range(1, len(os.listdir('stdout')) + 1)]
 
-    if not compile_c_file("./" + DEFAULT_C_FILENAME):
+    if not compile_c_file("./" + SRC_PACKAGE_NAME + '/' + DEFAULT_C_FILENAME):
         print("\033[91mPossible errors in the code. Please check the code and try again.\033[0m\n"
               "\033[91mMake sure that you use the same compiler in the terminal and in the IDE.\033[0m\n"
               "\033[91mTester will able to compile main.c file, if you can compile it using gcc main.c -o output\033[0m\n")
