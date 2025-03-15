@@ -5,9 +5,9 @@ import shutil
 import subprocess
 from pathlib import Path
 
-RED = "\033[91m"
-GREEN = "\033[92m"
-RESET = "\033[0m"
+RED = "\033[91m"  #: Used for red colored output in the console
+GREEN = "\033[92m"  #: Used for green colored output in the console
+RESET = "\033[0m"  #: Used to reset the console color to default
 
 SRC_PACKAGE_NAME = 'src'
 
