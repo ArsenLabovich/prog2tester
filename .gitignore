@@ -6,11 +6,13 @@ output.exe
 
 # Includes files
 # Code files
-include/*
-src/*
+include/
+src/
 
 # Test files
 tests/
+stdin/
+stdout/
 
 # IDE specific files
 .idea/
