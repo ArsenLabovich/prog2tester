@@ -6,15 +6,14 @@ _**- Python (version 3.6+)**_
 
 **_- GCC (version 7.5+, optional: Cygwin, use the same GCC as in your IDE)_**
 
-
-
 **_- \*\*Hands growing not from the ass\*\*_**
 
 --- 
 
-### **Starting Guide**
+### **TASK 2 ONLY**
+### **Starting Guide** 
 
-In the working directory, there should be a compilable C file named `main.c`
+In the working directory , there should be a package `/src` with  a compilable C file named `main.c` or `z2.c`
 and an unpacked folder with tests downloaded from the site `prog2.dev`.
 Or you can create your own tests with the same structure.
 
@@ -41,7 +40,7 @@ include/
 src/
 ├── data.c
 ├── functions.c
-├── main.c
+├── (main.c or z2.c) 
 tester.py
 ```
 ---
@@ -101,3 +100,5 @@ Example 3
 
 - **Telegram:** [@Laboviiich](https://t.me/Laboviiich)
 - **Email:** [arsen.labovich@gmail.com](mailto:arsen.labovich@gmail.com)
+- **Discord:** [medved9762] [medved9762]
+]

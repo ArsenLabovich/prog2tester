@@ -1,9 +1,8 @@
-import shutil
-import subprocess
+import argparse
 import os
 import re
-import time
-import argparse
+import shutil
+import subprocess
 from pathlib import Path
 
 RED = "\033[91m"
@@ -11,7 +10,9 @@ GREEN = "\033[92m"
 RESET = "\033[0m"
 
 SRC_PACKAGE_NAME = 'src'
-DEFAULT_C_FILENAME = 'main.c'
+
+DEFAULT_C_FILENAME = 'z2.c' if os.path.exists(SRC_PACKAGE_NAME + '/z2.c') else 'main.c' if os.path.exists(
+    SRC_PACKAGE_NAME + '/main.c') else 'notfound'
 
 parser = argparse.ArgumentParser(description='Run tests for C program.')
 parser.add_argument('-s', '--show-diff', default=False, action='store_true',
@@ -25,6 +26,7 @@ def normalize_spaces(line):
 
 
 def highlight_differences(expected, actual):
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("\n\033[91mACTUAL OUTPUT:\033[0m\n")
 
     for exp_line, act_line in zip(expected, actual):
@@ -47,6 +49,8 @@ def highlight_differences(expected, actual):
             highlighted_line.append(GREEN + exp + RESET)
 
         print("".join(highlighted_line))
+    input("\033[91mPress Enter to continue testing...\033[0m")
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def checkFilesAndFolders():
@@ -54,7 +58,7 @@ def checkFilesAndFolders():
         print("\033[91mTests folder not found\033[0m")
         print("\033[93mPlease read README.md file and follow instructions\033[0m")
         exit(1)
-    if not os.path.exists(DEFAULT_C_FILENAME):
+    if not os.path.exists(SRC_PACKAGE_NAME + '/' + DEFAULT_C_FILENAME):
         print("\033[91mC file not found\033[0m")
         print("\033[93mPlease read README.md file and follow instructions\033[0m")
         exit(1)
@@ -119,13 +123,12 @@ def run_tests_in_folder(input_folder, expected_folder):
 
     for input_data_path, expected_output_path in zip(input_data_paths, expected_output_paths):
         with open(expected_output_path, 'r') as file:
-            expected_output = file.readlines()
+            expected_output = file.read().splitlines()
         c_program_output = run_c_program(input_data_path).splitlines()
 
         expected_output_normal = [normalize_spaces(line) for line in expected_output]
         c_program_output_normal = [normalize_spaces(line) for line in c_program_output]
-
-        if expected_output_normal == c_program_output_normal:
+        if "".join(expected_output_normal) == "".join(c_program_output_normal):
             print(f"\033[92mTest passed in {input_folder} TEST#{counter}\033[0m")
             summary.append(f"\033[92mTest passed in {input_folder} TEST#{counter}\033[0m")
         else:
@@ -135,11 +138,7 @@ def run_tests_in_folder(input_folder, expected_folder):
                 print(f"\033[93mInput data: {input_data_path}\033[0m")
                 print(f"\033[93mExpected output: {expected_output_path}\033[0m\n\n")
                 highlight_differences(expected_output, c_program_output)
-                for seconds in range(2, 0, -1):
-                    print(f"\033[91mTesting will continue in {seconds} seconds...\033[0m", end="\r", flush=True)
-                    time.sleep(1)
         counter += 1
-        time.sleep(0.1)
     return summary
 
 
@@ -159,6 +158,7 @@ def main():
     for i in range(len(test_folders)):
         summary = run_tests_in_folder(test_folders[i], expected_folders[i])
         all_summaries.extend(summary)
+        all_summaries.extend("\n")
         print("\n")
 
     if show_diff:
