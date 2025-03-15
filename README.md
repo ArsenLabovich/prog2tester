@@ -92,7 +92,7 @@ Example 3
 #### *Author - Arsen Labovich*
 
 #### *All rights reserved. Unauthorized copying or use of this document is prohibited.*
-
+#### *The author is not responsible for the accuracy of your answers.*
 ---
 
 
